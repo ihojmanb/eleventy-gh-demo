@@ -5,19 +5,20 @@ pagination:
   size: 10
   reverse: true
   alias: posts
+  templateEngineOverride: njk,md
 ---
 {% for post in posts %}
   <article>
 
-    <h1>
+    <h1 class="font-sans text-xl mt-6 mb-2 mx-0">
       <a href="{{ post.url | url }}">{{ post.data.title }}</a>
     </h1>
 
-    <time datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
+    <time class="text-gray-400 text-sm" datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
 
     {% excerpt post %}
 
-    <a href="{{ post.url | url }}">Read more</a>
+    <a class="text-sm text-blue-300" href="{{ post.url | url }}">Read more</a>
 
   </article>
 {% endfor %}

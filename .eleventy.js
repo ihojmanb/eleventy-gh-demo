@@ -1,8 +1,82 @@
 const moment = require('moment');
-
+const markdownItLinkAttr = require('markdown-it-link-attributes');
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
 moment.locale('en');
 
-module.exports = function (eleventyConfig) {
+module.exports = function (eleventyConfig) {  
+  // Markdown
+  eleventyConfig.setLibrary(
+    "md",
+    require("markdown-it")("commonmark")
+    .use(require("markdown-it-attrs"
+    ))
+    .use(markdownItLinkAttr, {
+      // Make external links open in a new tab.
+      pattern: /^https?:\/\//,
+      attrs: {
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+    })
+  );
+  // Options for the `markdown-it` library
+  const markdownItOptions = {
+    html: true,
+  };
+  // This object is required inside the renderPermalink function.
+  // It's copied directly from the plugin source code.
+  const position = {
+    false: "push",
+    true: "unshift",
+  }
+
+  // Copied directly from the plugin source code, with one edit
+  // (marked with comments)
+  
+  const renderPermalink = (slug, opts, state, idx) => {
+    const space = () =>
+      Object.assign(new state.Token("text", "", 0), {
+        content: " ",
+      })
+
+    const linkTokens = [
+      Object.assign(new state.Token("link_open", "a", 1), {
+        attrs: [
+          ["class", opts.permalinkClass],
+          ["href", opts.permalinkHref(slug, state)],
+        ],
+      }),
+      Object.assign(new state.Token("html_block", "", 0), {
+        // Edit starts here:
+        content: `<span aria-hidden="true" class="hover:underline text-pink-500">$</span>
+        
+        `,
+        // Edit ends
+      }),
+      new state.Token("link_close", "a", -1),
+    ]
+
+    if (opts.permalinkSpace) {
+      linkTokens[position[!opts.permalinkBefore]](space())
+    }
+    state.tokens[idx + 1].children[position[opts.permalinkBefore]](
+      ...linkTokens
+    )
+  }
+  // Options for the `markdown-it-anchor` library
+  const markdownItAnchorOptions = {
+
+    permalink: true,
+    renderPermalink
+  };
+
+  const markdownLib = markdownIt(markdownItOptions).use(
+    markdownItAnchor,
+    markdownItAnchorOptions
+  )
+
+  eleventyConfig.setLibrary("md", markdownLib)
 
   eleventyConfig.addFilter('dateIso', date => {
     return moment(date).toISOString();
@@ -20,7 +94,8 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: 'src',
       output: '_site'
-    }
+    },
+    markdownTemplateEngine: "njk",
   }
 };
 

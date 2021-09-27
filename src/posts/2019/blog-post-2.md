@@ -6,9 +6,16 @@ tags: ['post']
 ---
 <!-- Excerpt Start -->
 
-Buy the latest and greatest cryptocurrency that no-one has heard of.
+Buy the *latest* **and** greatest cryptocurrency that no-one has heard of.
 
 <!-- Excerpt End -->
  
-## Legal Stuff
+### Legal Stuff  
+
 We do not accept any liability for any loss or damage.
+
+### Code  
+
+ ```racket
+ hello world 
+ ```

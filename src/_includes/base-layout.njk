@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Eleventy Blog</title>
 
-  <link rel="stylesheet" href="{{ '/css/site.css' | url }}">
+  {# <link rel="stylesheet" href="{{ '/css/site.css' | url }}"> #}
+  <link rel="stylesheet" type="text/css" href="/assets/main.css" />
+
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700|Roboto&display=fallback" rel="stylesheet">
+
 </head>
-<body>
-<header>
-  <a href="{{ '/' | url }}" class="link--home">My Blog</a>
-  <a href="{{ '/About' | url }} " class="link--about">About</a>
+<body class="m-0 py-10 px-8 text-lg font-mono">
+<header class="flex items-center px-16 py-5 bg-blue-700 text-white rounded-lg">
+  <a href="{{ '/' | url }}" class="link--home flex-grow text-3xl">My Blog</a>
+  <a href="{{ '/About' | url }} " class="link--about flex-grow text-base text-right">About</a>
 </header>
-<main>
+<main class="py-5 px-16 break-words prose">
   {{ content | safe }}
 </main>
-<footer>&copy; My Blog</footer>
+<footer class="px-0 pt-10 pb-8 text-sm text-gray-400">&copy; My Blog</footer>
 <script src="/assets/main.js"></script>
 </body>
 </html>
