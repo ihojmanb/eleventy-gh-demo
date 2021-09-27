@@ -15,7 +15,13 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode('excerpt', article => extractExcerpt(article));
 
   // Folders to copy to output folder
-  eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("src/css");
+  return {
+    dir: {
+      input: 'src',
+      output: '_site'
+    }
+  }
 };
 
 function extractExcerpt(article) {
@@ -48,3 +54,4 @@ function extractExcerpt(article) {
 
   return excerpt;
 }
+

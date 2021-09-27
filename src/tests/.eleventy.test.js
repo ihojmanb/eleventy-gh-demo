@@ -1,5 +1,5 @@
 const eleventyConfig = require('@11ty/eleventy/src/EleventyConfig');
-const eleventy = require('../.eleventy.js');
+const eleventy = require('../../.eleventy.js');
 
 let dateReadableFunc;
 
