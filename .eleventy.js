@@ -3,8 +3,13 @@ const markdownItLinkAttr = require('markdown-it-link-attributes');
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 moment.locale('en');
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
-module.exports = function (eleventyConfig) {  
+module.exports = function (eleventyConfig) {
+
+  eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);  
   // Markdown
   eleventyConfig.setLibrary(
     "md",
@@ -93,8 +98,10 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: {
-      input: 'src',
-      output: '_site'
+      input: "src",
+      includes: "_includes",
+      layouts: "_layouts",
+      output: "_site",
     },
     markdownTemplateEngine: "njk"
   }

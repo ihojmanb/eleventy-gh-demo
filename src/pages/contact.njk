@@ -1,0 +1,14 @@
+---
+title: Contact
+permalink: /contact/
+eleventyNavigation:
+  key: Contact
+  order: 4
+---
+You can shoot me an email at ihojmanb |at| gmail.com, or you can find me in the
+following networks:
+<ul>
+     {% for item in contact.items %}
+     <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+     {% endfor %}
+</ul>
