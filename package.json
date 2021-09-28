@@ -11,7 +11,8 @@
     "build:eleventy": "ELEVENTY_ENV=production eleventy",
     "build": "run-s clean build:*",
     "debug": "DEBUG=* npx eleventy",
-    "test": "jest"
+    "test": "jest",
+    "demo": ""
   },
   "repository": {
     "type": "git",
