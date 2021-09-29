@@ -1194,9 +1194,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:justify-between {
-    justify-content: space-between;
-  }
 }
 
 @media (min-width: 768px) {
@@ -1213,4 +1210,10 @@ video {
 }
 
 @media (min-width: 1536px) {
+}
+
+@media (min-width: 439px) {
+  .phone\:justify-between {
+    justify-content: space-between;
+  }
 }
