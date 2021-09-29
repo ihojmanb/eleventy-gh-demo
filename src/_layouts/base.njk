@@ -12,10 +12,7 @@
 
 </head>
 <body class="m-0 py-10 px-8 text-lg font-mono">
-{# <header class="flex items-center px-16 py-5 bg-blue-700 text-white rounded-lg">
-  <a href="{{ '/' | url }}" class="link--home flex-grow text-3xl">My Blog</a>
-  <a href="{{ '/About' | url }} " class="link--about flex-grow text-base text-right">About</a>
-</header> #}
+
 {% include "../_includes/components/navigation.njk" %}
 <main class="py-5 lg:px-16 break-words prose mx-auto">
   {{ content | safe }}

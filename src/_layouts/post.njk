@@ -2,6 +2,8 @@
 layout: base.njk
 ---
     {# <h3>{{ date | readableDate }}</h3> #}
+    <h3>{{ title }}</h3>
+    <time class="text-gray-400 text-sm" datetime="{{ post.date | dateIso }}">{{ post.date | dateReadable }}</time>
     <p>{{ content | safe }}</p>
 
 
