@@ -5,7 +5,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 moment.locale('en');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-
+let Nunjucks = require("nunjucks");
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
@@ -81,7 +81,18 @@ module.exports = function (eleventyConfig) {
     markdownItAnchorOptions
   )
 
+
   eleventyConfig.setLibrary("md", markdownLib)
+  // Customize Nunjucks Environment
+  // this helps with the rendering of posts as lists, and not as code
+  let nunjucksEnvironment = new Nunjucks.Environment(
+    new Nunjucks.FileSystemLoader("src/_includes"),
+    {
+      lstripBlocks: true,
+      trimBlocks: true
+    }
+  );
+  eleventyConfig.setLibrary("njk", nunjucksEnvironment);
 
   eleventyConfig.addFilter('dateIso', date => {
     return moment(date).toISOString();
@@ -103,7 +114,9 @@ module.exports = function (eleventyConfig) {
       layouts: "_layouts",
       output: "_site",
     },
-    markdownTemplateEngine: "njk"
+    markdownTemplateEngine: "njk",
+    templateFormats: ["md", "njk"],
+    // htmlTemplateEngine: "njk"
   }
 };
 

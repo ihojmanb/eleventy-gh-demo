@@ -1,0 +1,37 @@
+---
+title: Booklist
+permalink: /books/
+eleventyNavigation:
+  key: Books
+---
+
+This is  a list of the books I've read recently, and the ones that I'm reading.
+<br>  
+
+Expand to see a little review of each one of them!
+<ul class="divide-y">
+     {% for book in books.items %}
+        {% if book["Bookshelves"] != "currently-reading" %}
+            <details>
+                <summary> {{ book.Title }} 
+
+                <p class="text-xs ml-4 my-0"> by {{ book["Author l-f"] }} </p>
+
+                </summary>
+
+                    
+                        <ul>
+                            <li> My rating: {{ book["My Rating"] }}/5</li>
+                            <li> My review: {{book["My Review"]}} </li>
+                        </ul>
+
+
+
+            </details>
+        {% else %}
+            <div> {{ book.Title }} - still reading it!
+                <p class="text-xs ml-4 my-0"> by {{ book["Author l-f"] }} </p>
+            </div>
+        {% endif %}
+     {% endfor %}
+</ul>
