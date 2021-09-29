@@ -11,9 +11,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(syntaxHighlight); 
   // Find and copy any image, maintaining directory structure.
-  eleventyConfig.addPassthroughCopy("**/*.jpeg");
-  eleventyConfig.addPassthroughCopy("**/*.jpg"); 
-  eleventyConfig.addPassthroughCopy("**/*.png");
+  eleventyConfig.addPassthroughCopy("./src/**/*.jpeg");
+  eleventyConfig.addPassthroughCopy("./src/**/*.jpg");
+  eleventyConfig.addPassthroughCopy("./src/**/*.png");
   
   // Markdown
   eleventyConfig.setLibrary(

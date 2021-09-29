@@ -32,6 +32,9 @@ module.exports = {
       fontFamily: {
         body: ["IBM Plex Sans"],
       },
+    screens: {
+      'phone': '439px'
+    }
     },
   },
   variants: {},
