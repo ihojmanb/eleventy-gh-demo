@@ -9,7 +9,12 @@ let Nunjucks = require("nunjucks");
 module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  eleventyConfig.addPlugin(syntaxHighlight);  
+  eleventyConfig.addPlugin(syntaxHighlight); 
+  // Find and copy any image, maintaining directory structure.
+  eleventyConfig.addPassthroughCopy("**/*.jpeg");
+  eleventyConfig.addPassthroughCopy("**/*.jpg"); 
+  eleventyConfig.addPassthroughCopy("**/*.png");
+  
   // Markdown
   eleventyConfig.setLibrary(
     "md",
