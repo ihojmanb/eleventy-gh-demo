@@ -1,7 +1,18 @@
+# Dependencies
+/node_modules
 
-# _site is where the static generated files are copied to
-_site/
+# Misc
+/public
 
-node_modules/
-.idea/
+# Intellij
+/.idea
 
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# Visual Studio Code
+/.vscode
+.history
